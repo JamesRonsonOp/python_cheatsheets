@@ -25,6 +25,8 @@ import seaborn as sns
 |`pd.read_html(url)` | Parses an html URL, string or file and extracts tables to a list of dataframes |
 | `pd.read_clipboard()` | Takes the contents of your clipboard and passes it to read_table() |
 | `pd.DataFrame(dict)` | From a dict, keys for columns names, values for data as lists |
+| `pd.read_csv('../data/merchant_names_test1.csv', encoding = 'unicode_escape', engine ='python')`| Encoding  errors can be resolved with this code |
+
 
 ### Exporting Data
 **Use these commands to export a DataFrame to CSV, .xlsx, SQL, or JSON.**
@@ -147,6 +149,7 @@ import seaborn as sns
 |`where(cond[, other, inplace, axis, level, …])`|Replace values where the condition is False.|
 |`mask(cond[, other, inplace, axis, level, …])`|Replace values where the condition is True.|
 |`update(other[, join, overwrite, …])`|Modify in place using non-NA values from another DataFrame.|
+|`merchants['MerchantDescription'].str.replace('[^A-Za-z\s]+', '')`| leaves only letters and spaces behind |
 
 
 ###Applying Functions and Iterations
