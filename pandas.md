@@ -35,6 +35,26 @@ import seaborn as sns
 |`df.to_excel(filename)` | Write to an Excel file |
 |`df.to_sql(table_name, connection_object)` | Write to a SQL table |
 |`df.to_json(filename)` | Write to a file in JSON format |
+|`to_clipboard([excel, sep])`|Copy object to the system clipboard.|
+|`to_csv([path_or_buf, sep, na_rep, …])`| Write object to a comma-separated values (csv) file.|
+|`to_dict([orient, into])`| Convert the DataFrame to a dictionary.|
+|`to_excel(excel_writer[, sheet_name, na_rep, …])`|Write object to an Excel sheet.|
+|`to_feather(path, **kwargs) `| Write a DataFrame to the binary Feather format.|
+|`to_gbq(destination_table[, project_id, …])`| Write a DataFrame to a Google BigQuery table.|
+|`to_hdf(path_or_buf, key[, mode, complevel, …])`| Write the contained data to an HDF5 file using HDFStore. |
+|`to_html([buf, columns, col_space, header, …])`| Render a DataFrame as an HTML table.|
+|`to_json([path_or_buf, orient, date_format, …])`| Convert the object to a JSON string.|
+|`to_latex([buf, columns, col_space, header, …])`| Render object to a LaTeX tabular, longtable, or nested table/tabular.|
+|`to_markdown([buf, mode, index, storage_options])`| Print DataFrame in Markdown-friendly format.|
+|`to_numpy([dtype, copy, na_value])`| Convert the DataFrame to a NumPy array.|
+|`to_parquet([path, engine, compression, …])`| Write a DataFrame to the binary parquet format.|
+|`to_pickle(path[, compression, protocol, …])`| Pickle (serialize) object to file.|
+|`to_records([index, column_dtypes, index_dtypes])`| Convert DataFrame to a NumPy record array.|
+|`to_sql(name, con[, schema, if_exists, …])`|  Write records stored in a DataFrame to a SQL database.|
+|`to_stata(path[, convert_dates, write_index, …])`| Export DataFrame object to Stata dta format.|
+|`to_string([buf, columns, col_space, header, …])`| Render a DataFrame to a console-friendly tabular output.|
+|`to_xarray()`| Return an xarray object from the pandas object.|
+|`to_xml([path_or_buffer, index, root_name, …])`| Render a DataFrame to an XML document.|
 
 ### Creating a Dataframe
 **Methods for Creating a Pandas Dataframe**
@@ -72,6 +92,8 @@ import seaborn as sns
 |`df.index()` | Shows row index of dataframe |
 |`s.unique()` | returns an array of unique objects from a series |
 |`s.nunique()` | returns the number of unique objects |
+|`query(expr[, inplace])`|Query the columns of a DataFrame with a boolean expression.|
+|`memory_usage([index, deep])`|Return the memory usage of each column in bytes.|
 
 ### Selection/Indexing
 **Use these commands to select a specific subset of your data.**
@@ -89,6 +111,7 @@ import seaborn as sns
 |`df.reset_index()` | Reset index of Df and use the default one instead. |
 |`df.reset_index() *multi- index` | Remove one or more levels of the multindex|
 |`df.unstack()` | AKA pivot. Series with MultiIndex to produce DF. Level involved will get sorted.|
+|`get(key[, default])`|Get item from object for given key (ex: DataFrame column).|
 
 ### Data Cleaning
 **Use these commands to perform a variety of data cleaning tasks.**
@@ -96,6 +119,7 @@ import seaborn as sns
 |Code Example| Description |
 |-----|-----|
 |`df.columns = ['a','b','c']` | Rename columns |
+|`assign(**kwargs)`| Assign new columns to a DataFrame.|
 |`pd.isnull()` | Checks for null Values, Returns Boolean Arrray |
 |`df.isna()` | Checks for null Values, Returns Boolean Arrray|
 |`df.isnull()` | returns true or false for NaN values. |
@@ -118,6 +142,21 @@ import seaborn as sns
 |`df.set_index('column_one')` | Change the index|
 |`df.rename(index=lambda x: x + 1)` | Mass renaming of index|
 |`df[[‘column1’, ‘column2’, ‘column3’]]` | Reorder columns by heading. |
+|`astype(dtype[, copy, errors])`|Cast a pandas object to a specified dtype dtype.|
+|`clip([lower, upper, axis, inplace])`|Trim values at input threshold(s).|
+|`where(cond[, other, inplace, axis, level, …])`|Replace values where the condition is False.|
+|`mask(cond[, other, inplace, axis, level, …])`|Replace values where the condition is True.|
+|`update(other[, join, overwrite, …])`|Modify in place using non-NA values from another DataFrame.|
+
+
+###Applying Functions and Iterations
+|`pipe(func, *args, **kwargs)`|Apply func(self, *args, **kwargs).|
+|`iteritems()`|Iterate over (column name, Series) pairs.|
+|`iterrows()`|Iterate over DataFrame rows as (index, Series) pairs.|
+|`itertuples([index, name])`|Iterate over DataFrame rows as namedtuples.|
+|`eval(expr[, inplace])`|Evaluate a string describing operations on DataFrame columns.|
+|`applymap(func[, na_action])`|Apply a function to a Dataframe elementwise.|
+|`apply(func[, axis, raw, result_type, args])`|Apply a function along an axis of the DataFrame.|
 
 ### Filter, Sort, and Groupby
 **Use these commands to filter, sort, and group your data.**
@@ -175,6 +214,9 @@ import seaborn as sns
 |`div(other[, axis, level, fill_value])`| Get Floating division of dataframe and other, element-wise (binary operator truediv).|
 |`divide(other[, axis, level, fill_value])`| Get Floating division of dataframe and other, element-wise (binary operator truediv).|
 |`dot(other)`| Compute the matrix multiplication between the DataFrame and other.|
+|`pow(other[, axis, level, fill_value])`| Get Exponential power of dataframe and other, element-wise (binary operator pow).|
+|`prod([axis, skipna, level, numeric_only, …])`| Return the product of the values over the requested axis.|
+|`product([axis, skipna, level, numeric_only, …])`|Return the product of the values over the requested axis.|
 
 ### Comparing/Matching/Extracting Data
 **Use these commands to perform comparisons. **
@@ -195,14 +237,31 @@ import seaborn as sns
 |`compare(other[, align_axis, keep_shape, …])`| Compare to another DataFrame and show the differences.|
 |`diff([periods, axis])`|First discrete difference of element.|
 |`duplicated([subset, keep])`|Return boolean Series denoting duplicate rows.|
-
+|`pop(item)`|Return item and drop from frame.|
+|`explode(column[, ignore_index])`|Transform each element of a list-like to a row, replicating index values.|
+|`equals(other)`|Test whether two objects contain the same elements.|
+|`any([axis, bool_only, skipna, level])`|Return whether any element is True, potentially over an axis.|
+|`all([axis, bool_only, skipna, level])`|Return whether all elements are True, potentially over an axis.|
 
 ### TimeSeries Manipulation 
 **Use these functions to sort through and manipulate date and time objects**
 
+|Code Example| Description |
+|-----|-----|
 |`between_time(start_time, end_time[, …])`| Select values between particular times of the day (e.g., 9:00-9:30 AM).|
 |`asfreq(freq[, method, how, normalize, …])`| Convert time series to specified frequency.| 
-  
+|`at_time(time[, asof, axis])`|Select values at particular time of day (e.g., 9:30AM).|
+|`tz_localize(tz[, axis, level, copy, …])`|Localize tz-naive index of a Series or DataFrame to target time zone.|
+|`tz_convert(tz[, axis, level, copy])`|Convert tz-aware axis to target time zone.|
+|`tshift([periods, freq, axis])`|(DEPRECATED) Shift the time index, using the index’s frequency if available.|
+|`to_timestamp([freq, how, axis, copy])`|Cast to DatetimeIndex of timestamps, at beginning of period.|
+|`to_period([freq, axis, copy])`|Convert DataFrame from DatetimeIndex to PeriodIndex.|
+|`to_timestamp([freq, how, axis, copy])`| Cast to DatetimeIndex of timestamps, at beginning of period.|
+|`shift([periods, freq, axis, fill_value])`|Shift index by desired number of periods with an optional time freq.|
+|`rolling(window[, min_periods, center, …])`|Provide rolling window calculations.|
+|`resample(rule[, axis, closed, label, …])`|Resample time-series data.|
+|`first(offset)`|Select initial periods of time series data based on a date offset.|
+
 
 Pandas.map()
 
@@ -213,5 +272,3 @@ Series.map(arg, na_action = none)
 Parameters: 
 Arg: function, dict or series
 Na_action: {none, ‘ignore’} if ‘ignore’, propagate NA values, without passing them to the mapping corre
-![image](https://user-images.githubusercontent.com/57559181/133021843-9a871a50-f965-4ea3-b6e5-b2a09ed27c6a.png)
-
