@@ -1,0 +1,31 @@
+# Python Cheatsheet
+
+##String Methods and Functions
+
+### Case Converting
+
+|Code Example| Description |
+|-----|-----|
+|`capitalize()`| Capitalizes the first word|
+|`title()`| Capitalizes all the words in a string |
+
+
+### String Filling
+
+|Code Example| Description |
+|-----|-----|
+|`str.format()`| unsure |
+|`center()`| Centers a word on a fixed length |
+|`zfill()`| Adds zeros at beginning of a string to create similar lengths |
+
+
+### Regex Like Functions and Methods
+
+|Code Example| Description |
+|-----|-----|
+|`isalnum()`| True if a value is alphanumeric |
+|`isalpha()` | matching strings with letters |
+|`isdigit()` | matching strings with numbers |
+|`isdecimal()`| match a decimal number |
+|`isidentifier()`| if an "_" is valid in a string |
+
