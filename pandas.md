@@ -150,6 +150,9 @@ import seaborn as sns
 
 
 ###Applying Functions and Iterations
+
+|Code Example| Description |
+|-----|-----|
 |`pipe(func, *args, **kwargs)`|Apply func(self, *args, **kwargs).|
 |`iteritems()`|Iterate over (column name, Series) pairs.|
 |`iterrows()`|Iterate over DataFrame rows as (index, Series) pairs.|
