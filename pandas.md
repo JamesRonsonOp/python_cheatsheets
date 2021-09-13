@@ -12,7 +12,8 @@ import seaborn as sns
 
 
 ### Reading in Data
-* Use these commands to import data from a variety of different sources and formats. *
+**Use these commands to import data from a variety of different sources and formats.**
+
 |Code Example| Description |
 |-----|-----|
 |`pd.read_csv(filename)` | From a CSV file |
